@@ -16,11 +16,11 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
 
       - name: docker buildx
         id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
+        uses: crazy-max/ghaction-docker-buildx@e01797ad2ea9a981005ad58c99afa8d842e3d3eb # v1
         with:
           buildx-version: latest
           qemu-version: latest
