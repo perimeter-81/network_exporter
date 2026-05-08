@@ -45,6 +45,14 @@ jobs:
         env:
           VERSION: latest
 
+
+      - name: Push metrics
+        if: always()
+        continue-on-error: true
+        uses: perimeter-81/actions/actions/monitoring/push_metrics@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
   goreleaser:
     runs-on: ${{ vars.ACTIONS_RUNNER_DOCKER }}
     steps:
@@ -64,3 +72,11 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push metrics
+        if: always()
+        continue-on-error: true
+        uses: perimeter-81/actions/actions/monitoring/push_metrics@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+

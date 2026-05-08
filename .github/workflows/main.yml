@@ -27,3 +27,11 @@ jobs:
 
       - name: login to docker hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push metrics
+        if: always()
+        continue-on-error: true
+        uses: perimeter-81/actions/actions/monitoring/push_metrics@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
